@@ -1,12 +1,25 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-
-const schema = require('./schema/schema');
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const mongoose = require("mongoose");
+const schema = require("./schema/schema");
 
 const app = express();
 
+mongoose.connect(
+  "mongodb+srv://Manh-Hoang:123456A@cluster0-gkgpa.gcp.mongodb.net/GraphQLLearning?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    autoIndex: false
+  }
+);
+mongoose.connection.once("open", () => {
+  console.log("Database connected");
+});
 app.use(
-  '/graphql',
+  "/graphql",
   graphqlHTTP({
     schema,
     graphiql: true
@@ -14,5 +27,5 @@ app.use(
 );
 
 app.listen(5000, () => {
-  console.log('Listening for requests on port 5000');
+  console.log("Listening for requests on port 5000");
 });
