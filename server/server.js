@@ -6,7 +6,7 @@ const schema = require("./schema/schema");
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://Manh-Hoang:123456A@cluster0-gkgpa.gcp.mongodb.net/GraphQLLearning?retryWrites=true&w=majority",
+  "",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
